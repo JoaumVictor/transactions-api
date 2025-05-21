@@ -9,11 +9,6 @@ export class Transaction {
       throw new BadRequestException('Amount não pode ser negativo');
     }
 
-    const now = new Date();
-    if (timestamp > now) {
-      throw new BadRequestException('Timestamp não pode ser no futuro');
-    }
-
     this.amount = amount;
     this.timestamp = timestamp;
   }

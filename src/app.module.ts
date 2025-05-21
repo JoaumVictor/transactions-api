@@ -4,6 +4,9 @@ import { CreateTransactionUseCase } from './application/use-cases/create-transac
 import { InMemoryTransactionRepository } from './infra/repositories/in-memory/in-memory-transaction.repository';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
+import { DeleteTransactionsUseCase } from './application/use-cases/delete-transactions.use-case';
+import { GetStatisticsUseCase } from './application/use-cases/get-statistics.use-case';
+import { StatisticsController } from './interfaces/controllers/statistics.controller';
 
 @Module({
   imports: [
@@ -16,9 +19,11 @@ import { APP_GUARD } from '@nestjs/core';
       ],
     }),
   ],
-  controllers: [TransactionController],
+  controllers: [TransactionController, StatisticsController],
   providers: [
     CreateTransactionUseCase,
+    DeleteTransactionsUseCase,
+    GetStatisticsUseCase,
     {
       provide: 'TransactionRepository',
       useClass: InMemoryTransactionRepository,
