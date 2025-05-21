@@ -8,7 +8,7 @@ export class CreateTransactionDto {
   })
   @IsNumber({}, { message: 'O valor da transação deve ser um número.' })
   @Min(0, { message: 'O valor da transação não pode ser negativo.' })
-  amount: number;
+  amount!: number;
 
   @ApiProperty({
     example: '2025-05-20T12:34:56.789Z',
@@ -18,5 +18,5 @@ export class CreateTransactionDto {
     {},
     { message: 'A data da transação deve estar em formato ISO 8601.' },
   )
-  timestamp: string;
+  timestamp!: string;
 }
