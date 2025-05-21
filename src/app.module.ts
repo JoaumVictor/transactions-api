@@ -7,6 +7,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { DeleteTransactionsUseCase } from './application/use-cases/delete-transactions.use-case';
 import { GetStatisticsUseCase } from './application/use-cases/get-statistics.use-case';
 import { StatisticsController } from './interfaces/controllers/statistics.controller';
+import { HealthController } from './interfaces/controllers/health.controller';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { StatisticsController } from './interfaces/controllers/statistics.contro
       ],
     }),
   ],
-  controllers: [TransactionController, StatisticsController],
+  controllers: [TransactionController, StatisticsController, HealthController],
   providers: [
     CreateTransactionUseCase,
     DeleteTransactionsUseCase,
