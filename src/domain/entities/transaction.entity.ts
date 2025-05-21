@@ -1,4 +1,4 @@
-import { BadRequestException } from '@nestjs/common';
+import { UnprocessableEntityException } from '@nestjs/common';
 
 export class Transaction {
   public readonly amount: number;
@@ -6,7 +6,7 @@ export class Transaction {
 
   constructor(amount: number, timestamp: Date) {
     if (amount < 0) {
-      throw new BadRequestException('Amount não pode ser negativo');
+      throw new UnprocessableEntityException('Amount não pode ser negativo');
     }
 
     this.amount = amount;
