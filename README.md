@@ -1,98 +1,183 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 💸 Transactions API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+API RESTful desenvolvida em NestJS para registro e estatísticas de transações financeiras.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+> Projeto desenvolvido como desafio técnico, com foco em Clean Architecture, boas práticas, testes e segurança.
 
-## Description
+---
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## ✅ Requisitos atendidos
 
-## Project setup
+- ✅ Desenvolvido com **NestJS + TypeScript**
+- ✅ Dados armazenados **em memória** (sem banco)
+- ✅ Estrutura em **Clean Architecture**
+- ✅ Uso de **DTOs com validação** (`class-validator`)
+- ✅ Padrão **RESTful**
+- ✅ Logs estruturados com **Pino**
+- ✅ Documentação com **Swagger**
+- ✅ **Testes unitários e de integração** com Jest + Supertest
+- ✅ Docker e Docker Compose
+- ✅ Tratamento de erros e status HTTP adequados
+- ✅ Segurança com **Helmet** e **Rate Limiting**
+- ✅ Organização por **commits por endpoint**
 
-```bash
-$ yarn install
-```
+---
 
-## Compile and run the project
+## 🧰 Tecnologias
 
-```bash
-# development
-$ yarn run start
+- NestJS
+- TypeScript
+- Supertest + Jest
+- Pino (logs)
+- Swagger
+- Helmet
+- Throttler (Rate Limiter)
+- Docker + Docker Compose
 
-# watch mode
-$ yarn run start:dev
+---
 
-# production mode
-$ yarn run start:prod
-```
+## 📁 Estrutura de pastas (Clean Architecture)
 
-## Run tests
+src/
+├── application/ # Casos de uso
+├── domain/ # Entidades e interfaces
+├── infra/ # Implementações (ex: repositório em memória, logger)
+├── interfaces/ # Controllers (interface da aplicação)
+├── app.module.ts # Módulo raiz
+├── main.ts # Bootstrap da aplicação
 
-```bash
-# unit tests
-$ yarn run test
+---
 
-# e2e tests
-$ yarn run test:e2e
+## 🚀 Como rodar localmente
 
-# test coverage
-$ yarn run test:cov
-```
+### 1. Instale as dependências
 
-## Deployment
+yarn install
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+### 2. Rode em modo dev
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+yarn start:dev
 
-```bash
-$ yarn install -g @nestjs/mau
-$ mau deploy
-```
+### 3. Acesse a API
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+- Health check: http://localhost:3000/health
+- Swagger: http://localhost:3000/docs
 
-## Resources
+---
 
-Check out a few resources that may come in handy when working with NestJS:
+## 🐳 Como rodar com Docker
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### 1. Build e start com Docker Compose
 
-## Support
+docker compose up --build
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### 2. Acesse
 
-## Stay in touch
+- http://localhost:3000/health
+- http://localhost:3000/docs
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+---
 
-## License
+## 🔐 Segurança
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+- Uso de Helmet para proteção contra cabeçalhos maliciosos
+- Rate limiting configurado: 10 requisições por IP por minuto
+- Apenas JSON aceito (sem HTML, XML etc.)
+
+---
+
+## 🧪 Testes
+
+### Unitários
+
+- Use cases testados isoladamente com mocks
+- Executar:
+
+yarn test
+
+### Integração (Supertest)
+
+- Controllers testados de ponta a ponta
+- Executar:
+
+yarn test test/controllers
+
+### Cobertura
+
+yarn test --coverage
+
+> Gera pasta coverage/ com relatório HTML e métricas.
+
+---
+
+## 📄 Documentação Swagger
+
+- Disponível em: http://localhost:3000/docs
+- Gera automaticamente a partir dos decorators (@ApiTags, @ApiProperty, etc.)
+
+---
+
+## 📡 Endpoints
+
+### ✅ POST /transactions
+
+Registra uma nova transação
+
+Payload:
+{
+"amount": 150.75,
+"timestamp": "2025-05-21T13:30:00.000Z"
+}
+
+Validações:
+
+- Valor deve ser positivo
+- Timestamp deve estar no passado (UTC)
+- Formato ISO 8601
+
+---
+
+### ✅ DELETE /transactions
+
+Remove todas as transações
+
+---
+
+### ✅ GET /statistics
+
+Retorna estatísticas das transações dos últimos 60 segundos
+
+Exemplo de resposta:
+{
+"count": 3,
+"sum": 350,
+"avg": 116.66,
+"min": 50,
+"max": 200
+}
+
+---
+
+### ✅ GET /health
+
+Verifica se a API está ativa
+
+Resposta:
+{
+"status": "ok",
+"timestamp": "2025-05-21T16:54:12.123Z"
+}
+
+---
+
+## 🧠 Observações técnicas
+
+- Timestamps devem ser enviados em UTC (Z no final)
+- API aceita apenas JSON
+- Código estruturado para facilitar extensão (ex: trocar memória por banco depois)
+
+---
+
+## 👨‍💻 Autor
+
+Desenvolvido por João Victor Fausto Souza para desafio técnico de backend.
