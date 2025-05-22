@@ -53,9 +53,10 @@ describe('CreateTransactionUseCase', () => {
   });
 
   it('deve lançar erro 422 se o amount for negativo', () => {
+    const now = Date.now();
     const input = {
       amount: -5,
-      timestamp: new Date().toISOString(),
+      timestamp: new Date(now).toISOString(),
     };
 
     expect(() => useCase.execute(input)).toThrow(UnprocessableEntityException);

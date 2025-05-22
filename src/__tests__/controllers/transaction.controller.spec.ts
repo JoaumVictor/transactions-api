@@ -29,9 +29,10 @@ describe('TransactionController (e2e)', () => {
 
   describe('POST /transactions', () => {
     it('deve retornar 201 quando uma transação válida é enviada', async () => {
+      const now = Date.now();
       const payload = {
         amount: 150.75,
-        timestamp: new Date().toISOString(),
+        timestamp: new Date(now).toISOString(),
       };
 
       const response = await request(app.getHttpServer())
@@ -78,8 +79,9 @@ describe('TransactionController (e2e)', () => {
     });
 
     it('deve retornar 200 com todas as transações cadastradas', async () => {
+      const now = Date.now();
       const transactions = [
-        { amount: 100.5, timestamp: new Date().toISOString() },
+        { amount: 100.5, timestamp: new Date(now).toISOString() },
         {
           amount: 200.75,
           timestamp: new Date(Date.now() - 10000).toISOString(),
@@ -108,11 +110,12 @@ describe('TransactionController (e2e)', () => {
     });
 
     it('deve retornar transações no formato correto', async () => {
+      const now = Date.now();
       await request(app.getHttpServer()).delete('/transactions');
 
       const testTransaction = {
         amount: 50.25,
-        timestamp: new Date().toISOString(),
+        timestamp: new Date(now).toISOString(),
       };
 
       await request(app.getHttpServer())
