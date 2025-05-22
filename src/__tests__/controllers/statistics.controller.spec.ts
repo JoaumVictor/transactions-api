@@ -9,10 +9,12 @@ describe('StatisticsController (e2e)', () => {
   let app: INestApplication;
   let transactionRepository: InMemoryTransactionRepository;
 
-  beforeEach(async () => {
+  beforeAll(() => {
     const fixedNow = new Date('2025-05-22T21:43:30.000Z');
     jest.useFakeTimers().setSystemTime(fixedNow);
+  });
 
+  beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     })
@@ -119,7 +121,7 @@ describe('StatisticsController (e2e)', () => {
         { length: 1000 },
         (_, i) => ({
           amount: 10 + i,
-          timestamp: new Date(Date.now() - i * 50), // Transações espaçadas em 50ms
+          timestamp: new Date(Date.now() - i * 50),
         }),
       );
 
@@ -168,7 +170,6 @@ describe('StatisticsController (e2e)', () => {
       ];
       transactionRepository.save(transactions[0]);
 
-      // Simula 50 requisições rápidas
       const requests = Array.from({ length: 50 }, () =>
         request(app.getHttpServer()).get('/statistics'),
       );
@@ -201,18 +202,13 @@ describe('StatisticsController (e2e)', () => {
       ];
 
       transactions.forEach((tx) => {
-        console.log('Saving transaction:', tx);
         transactionRepository.save(tx);
       });
-
-      // Mock Date.now para usar o mesmo 'now' do teste
-      jest.spyOn(global.Date, 'now').mockReturnValue(now);
 
       const response = await request(app.getHttpServer())
         .get('/statistics')
         .expect(200);
 
-      console.log('Response:', response.body);
       expect(response.body).toEqual({
         count: 2,
         sum: 300,
@@ -220,9 +216,6 @@ describe('StatisticsController (e2e)', () => {
         min: 100,
         max: 200,
       });
-
-      // Restaura o mock
-      jest.spyOn(global.Date, 'now').mockRestore();
     });
 
     it('deve calcular estatísticas corretamente para números flutuantes variados', async () => {
@@ -233,10 +226,6 @@ describe('StatisticsController (e2e)', () => {
       ];
 
       transactions.forEach((tx) => {
-        console.log('Saving transaction:', {
-          amount: tx.amount,
-          timestamp: tx.timestamp.getTime(),
-        });
         transactionRepository.save(tx);
       });
 
@@ -244,7 +233,6 @@ describe('StatisticsController (e2e)', () => {
         .get('/statistics')
         .expect(200);
 
-      console.log('Response:', response.body);
       expect(response.body).toEqual({
         count: 3,
         sum: 69.13000000000001,
@@ -261,10 +249,6 @@ describe('StatisticsController (e2e)', () => {
       ];
 
       transactions.forEach((tx) => {
-        console.log('Saving transaction:', {
-          amount: tx.amount,
-          timestamp: tx.timestamp.getTime(),
-        });
         transactionRepository.save(tx);
       });
 
@@ -272,7 +256,6 @@ describe('StatisticsController (e2e)', () => {
         .get('/statistics')
         .expect(200);
 
-      console.log('Response:', response.body);
       expect(response.body).toEqual({
         count: 2,
         sum: 123.456789223456,
