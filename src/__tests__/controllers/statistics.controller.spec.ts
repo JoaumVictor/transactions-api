@@ -164,7 +164,7 @@ describe('StatisticsController (e2e)', () => {
       });
     });
 
-    it.skip('deve suportar múltiplas requisições rápidas (rate limiting)', async () => {
+    it('deve suportar múltiplas requisições rápidas (rate limiting)', async () => {
       // ⚠️ Teste instável em ambientes CI por ECONNRESET — testado localmente com sucesso
       if (process.env.CI) {
         console.warn(
