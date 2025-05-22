@@ -42,7 +42,7 @@ describe('CreateTransactionUseCase', () => {
   });
 
   it('deve lançar erro 422 se o timestamp for no futuro', () => {
-    const future = new Date(Date.now() + 60_000); // 1 minuto no futuro
+    const future = new Date(Date.now() + 60_000);
 
     const input = {
       amount: 100.5,
