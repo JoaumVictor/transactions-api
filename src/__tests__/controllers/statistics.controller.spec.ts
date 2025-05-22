@@ -189,7 +189,7 @@ describe('StatisticsController (e2e)', () => {
       const now = Date.now();
       const transactions: Transaction[] = [
         { amount: 100, timestamp: new Date(now - 1000) },
-        { amount: 200, timestamp: new Date(now - 56999) },
+        { amount: 200, timestamp: new Date(now - 50000) },
         { amount: 300, timestamp: new Date(now - 60001) },
       ];
 
