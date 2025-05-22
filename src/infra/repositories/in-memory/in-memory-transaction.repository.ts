@@ -19,11 +19,10 @@ export class InMemoryTransactionRepository implements TransactionRepository {
   }
 
   findLast60Seconds(): Transaction[] {
-    const now = Date.now();
-
+    const nowMs = Date.now();
     return this.transactions.filter((tx) => {
-      const time = new Date(tx.timestamp).getTime();
-      return time <= now && now - time <= 60_000;
+      const time = tx.timestamp.getTime();
+      return time <= nowMs && nowMs - time <= 60_000;
     });
   }
 }

@@ -24,7 +24,7 @@ export class GetStatisticsUseCase {
     const amounts = transactions.map((t) => t.amount);
     const sum = amounts.reduce((a, b) => a + b, 0);
     const count = transactions.length;
-    const avg = sum / count;
+    const avg = Math.round((sum / count) * 1e6) / 1e6;
     const min = Math.min(...amounts);
     const max = Math.max(...amounts);
 
