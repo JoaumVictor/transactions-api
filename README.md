@@ -38,6 +38,7 @@ API RESTful desenvolvida em NestJS para registro e estatísticas de transações
 
 ## 📁 Estrutura de pastas (Clean Architecture)
 
+```
 src/
 ├── application/ # Casos de uso
 ├── domain/ # Entidades e interfaces
@@ -45,6 +46,7 @@ src/
 ├── interfaces/ # Controllers (interface da aplicação)
 ├── app.module.ts # Módulo raiz
 ├── main.ts # Bootstrap da aplicação
+```
 
 ---
 

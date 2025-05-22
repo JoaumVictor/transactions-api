@@ -33,13 +33,7 @@ export class StatisticsController {
       return this.getStatisticsUseCase.execute();
     } catch (error) {
       this.logger.error('Falha ao listar transações', error);
-      return {
-        count: 0,
-        sum: 0,
-        avg: 0,
-        min: 0,
-        max: 0,
-      };
+      throw error;
     }
   }
 }
