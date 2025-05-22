@@ -8,9 +8,13 @@ import { DeleteTransactionsUseCase } from './application/use-cases/delete-transa
 import { GetStatisticsUseCase } from './application/use-cases/get-statistics.use-case';
 import { StatisticsController } from './interfaces/controllers/statistics.controller';
 import { HealthController } from './interfaces/controllers/health.controller';
+import { Logger, LoggerModule } from 'nestjs-pino';
+import { loggerConfig } from './logger.config';
+import { GetAllTransactionsUseCase } from './application/use-cases/get-all-transactions.use-case';
 
 @Module({
   imports: [
+    LoggerModule.forRoot(loggerConfig),
     ThrottlerModule.forRoot({
       throttlers: [
         {
@@ -22,6 +26,7 @@ import { HealthController } from './interfaces/controllers/health.controller';
   ],
   controllers: [TransactionController, StatisticsController, HealthController],
   providers: [
+    GetAllTransactionsUseCase,
     CreateTransactionUseCase,
     DeleteTransactionsUseCase,
     GetStatisticsUseCase,
@@ -32,6 +37,10 @@ import { HealthController } from './interfaces/controllers/health.controller';
     {
       provide: APP_GUARD,
       useClass: ThrottlerGuard,
+    },
+    {
+      provide: 'Logger',
+      useClass: Logger,
     },
   ],
 })

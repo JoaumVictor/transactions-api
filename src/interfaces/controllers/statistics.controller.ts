@@ -1,10 +1,13 @@
-import { Controller, Get, HttpCode } from '@nestjs/common';
+import { Controller, Get, HttpCode, Inject, Logger } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { GetStatisticsUseCase } from 'src/application/use-cases/get-statistics.use-case';
 
 @Controller('statistics')
 export class StatisticsController {
-  constructor(private readonly getStatisticsUseCase: GetStatisticsUseCase) {}
+  constructor(
+    @Inject('Logger') private readonly logger: Logger,
+    private readonly getStatisticsUseCase: GetStatisticsUseCase,
+  ) {}
 
   @Get()
   @HttpCode(200)
@@ -25,6 +28,12 @@ export class StatisticsController {
     },
   })
   get() {
-    return this.getStatisticsUseCase.execute();
+    try {
+      this.logger.log('Listando todas as transações dos últimos 60 segundos');
+      return this.getStatisticsUseCase.execute();
+    } catch (error) {
+      this.logger.error('Falha ao listar transações', error);
+      throw error;
+    }
   }
 }
