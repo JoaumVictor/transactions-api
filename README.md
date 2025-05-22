@@ -100,9 +100,6 @@ yarn test
 ### Integração (Supertest)
 
 - Controllers testados de ponta a ponta
-- Executar:
-
-yarn test test/controllers
 
 ### Cobertura
 

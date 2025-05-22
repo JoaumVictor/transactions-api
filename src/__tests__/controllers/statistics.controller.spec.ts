@@ -10,6 +10,9 @@ describe('StatisticsController (e2e)', () => {
   let transactionRepository: InMemoryTransactionRepository;
 
   beforeEach(async () => {
+    const fixedNow = new Date('2025-05-22T21:43:30.000Z');
+    jest.useFakeTimers().setSystemTime(fixedNow);
+
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     })
@@ -26,6 +29,10 @@ describe('StatisticsController (e2e)', () => {
 
   afterEach(async () => {
     await app.close();
+  });
+
+  afterAll(async () => {
+    jest.useRealTimers();
   });
 
   describe('GET /statistics', () => {
