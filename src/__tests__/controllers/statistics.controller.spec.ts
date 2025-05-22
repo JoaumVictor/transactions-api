@@ -2,7 +2,6 @@ import request from 'supertest';
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import { AppModule } from 'src/app.module';
-import { TransactionRepository } from 'src/domain/repositories/transaction.repository';
 import { InMemoryTransactionRepository } from 'src/infra/repositories/in-memory/in-memory-transaction.repository';
 import { Transaction } from 'src/domain/entities/transaction.entity';
 
@@ -190,7 +189,7 @@ describe('StatisticsController (e2e)', () => {
       const now = Date.now();
       const transactions: Transaction[] = [
         { amount: 100, timestamp: new Date(now - 1000) },
-        { amount: 200, timestamp: new Date(now - 59999) },
+        { amount: 200, timestamp: new Date(now - 56999) },
         { amount: 300, timestamp: new Date(now - 60001) },
       ];
 
